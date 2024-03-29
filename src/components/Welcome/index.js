@@ -3,19 +3,19 @@ import {Component} from 'react'
 import './index.css'
 
 class Welcome extends Component {
-  state = {isSubscribe: true, text: 'Subscribe'}
+  state = {isSubscribe: false}
 
   buttonClicked = () => {
+    this.setState(prevState => ({isSubscribe: !prevState.isSubscribe}))
+  }
+
+  getText = () => {
     const {isSubscribe} = this.state
-    if (isSubscribe === false) {
-      this.setState(() => ({isSubscribe: true, text: 'Subscribe'}))
-    } else {
-      this.setState(() => ({isSubscribe: false, text: 'Subscribed'}))
-    }
+    return isSubscribe ? 'Subscribed' : 'Subscribe'
   }
 
   render() {
-    const {text} = this.state
+    const text = this.getText()
     return (
       <div className="bg-container">
         <h1 className="heading">Welcome</h1>
